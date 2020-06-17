@@ -25,7 +25,7 @@ import joblib
 #####
 
 # Read in complete dataset
-df_ds = pd.read_csv('Total_Spotify_4Emotion_AllParts.csv')
+df_ds = pd.read_csv('Data/Total_Spotify_4Emotion_AllParts.csv')
 
 # Get lyrics for each song in the training dataset
 df_ds = df_ds.dropna()
@@ -41,14 +41,19 @@ df_inst = df_ds[(df_ds['instrumentalness'] > 0.45) & (df_ds['speechiness'] < 0.3
 df_inst_red = df_inst[df_inst.overall_emotion != 'calm']
 
 # Input features
+# v1, Logistic Regression
+#features = df_inst_red[['danceability', 'energy', 'loudness_linear', 'speechiness',
+#       'acousticness', 'instrumentalness', 'valence', 'tempo', 'duration_ms']]
+
+# v2, Random Forest
 features = df_inst_red[['danceability', 'energy', 'loudness_linear', 'speechiness',
-       'acousticness', 'instrumentalness', 'valence', 'tempo', 'duration_ms']]
+       'acousticness', 'valence', 'duration_ms']]
 
 # Output labels for emotion classification
 labels = df_inst_red[['overall_emotion']]
 
 # Create training/testing split
-x_train, x_test, y_train, y_test = train_test_split(features, labels)
+x_train, x_test, y_train, y_test = train_test_split(features, labels, test_size=0.2)
 print("Using a training dataset of size:", len(x_train))
 print("Using a test dataset of size:", len(x_test))
 
@@ -58,10 +63,20 @@ scale = StandardScaler().fit(x_train)
 train_features = scale.transform(x_train)
 
 # Fit the training dataset
-clf = LogisticRegression(
-    C=0.004832930238571752,
-		penalty='l2',
-		solver='liblinear',
+# v1, Logistic Regression
+#clf = LogisticRegression(
+#    C=0.004832930238571752,
+#		penalty='l2',
+#		solver='liblinear',
+#    random_state = 1)
+#clf.fit(train_features, y_train.values.ravel())
+#
+# v2, Random Forest
+clf = RandomForestClassifier(
+    n_estimators=500, 
+    max_depth=15,
+    min_samples_split=5,
+    min_samples_leaf=3, 
     random_state = 1)
 clf.fit(train_features, y_train.values.ravel())
 
@@ -75,7 +90,7 @@ pickle.dump(clf, open('best_inst_rfc.pkl', 'wb'))
 #####
 
 # Read in full lyrical training set
-df_lyrics = pd.read_csv('GeniusLyrics_VocalsOnlySet_FullFinal_withSentScores.csv')
+df_lyrics = pd.read_csv('Data/GeniusLyrics_VocalsOnlySet_FullFinal_withSentScores.csv')
 
 # Reduce the lyrics training set to only include 'happy', 'sad', and 'angry'
 df_lyrics_red = df_lyrics[df_lyrics.overall_emotion != 'calm']
@@ -90,7 +105,7 @@ labels = df_lyrics_red[['overall_emotion']]
 
 # Create training/testing split
 #x_train, x_test, y_train, y_test = split_by_emotion(features, labels)
-x_train, x_test, y_train, y_test = train_test_split(features, labels)
+x_train, x_test, y_train, y_test = train_test_split(features, labels, test_size = 0.2)
 print("Using a training dataset of size:", len(x_train))
 print("Using a test dataset of size:", len(x_test))
 
@@ -101,9 +116,9 @@ train_features = scale.transform(x_train)
 
 # Fit the training dataset
 clf = RandomForestClassifier(
-    n_estimators=500, 
-    max_depth=15,
-    min_samples_split=5,
+    n_estimators=1000, 
+    max_depth=30,
+    min_samples_split=2,
     min_samples_leaf=1, 
     random_state = 1)
 clf.fit(train_features, y_train.values.ravel())
