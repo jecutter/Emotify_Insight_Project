@@ -9,7 +9,7 @@ For details and code for the deployment of the actual Streamlit application, see
 
 To try out the app, visit the [application website](http://dataproject.xyz/).
 
-![Example image of Emotify app](img/emotify_app_example)
+<a href="url"><img src="img/emotify_app_example.png" width="80%"></a>
 
 ## Motivation
 
@@ -34,6 +34,8 @@ Emotify is a tool for listeners and content creators to filter any songs by emot
 
 ## Building the Models
 
-![Data flow diagram for Emotify](img/emotify_dataflow_diagram.png)
+<p align="center">
+  <a href="url"><img src="img/emotify_dataflow_diagram.png" width="80%"></a>
+ </p>
 
 
