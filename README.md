@@ -3,7 +3,7 @@
 
 *Creating an Emotional Backdrop to Meet Your Musical Needs*
 
-This repository holds the code used for model building and development.
+This repository holds the code used for model building and development of my Insight project: Emotify!
 
 For details and code for the deployment of the actual Streamlit application, see [this repo](https://github.com/jecutter/Emotify_App).
 
