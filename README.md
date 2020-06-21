@@ -9,6 +9,8 @@ For details and code for the deployment of the actual Streamlit application, see
 
 To try out the app, visit the [application website](http://dataproject.xyz/).
 
+![Example image of Emotify app](img/emotify_app_example)
+
 ## Motivation
 
 Music streaming services bring in an enormous amount of revenue. In 2019, subscriptions to such services *alone* brought in > $7 billion, excluding ad revenue.
@@ -16,6 +18,13 @@ Music streaming services bring in an enormous amount of revenue. In 2019, subscr
 Spotify, the Goliath of music streaming services, offers the ability for users to create custom playlists, and provides a wide variety of pre-categorized playlists as well. Mood playlists are quite popular, however they are manually curated by humans. Can we automate this process of filtering songs by their emotional content?
 
 Emotify is a tool for listeners and content creators to filter any songs by emotion. This is a proof-of-concept for a feature that could be implemented on a larger scale as a premium subscription service, but this application is limited to any given public playlist (see the [application website](http://dataproject.xyz/)).
+
+## Repo Contents
+
+* Emotify_Project_Dev.ipynb - the main Jupyter notebook for this project containing data collection, EDA, model development, and model validation (with the sections ordered in time, showing project development)
+* build_final_model.py - a separate Python script run specifically to build final models within specific environments (with parameters tuned in the development notebook)
+* Data/ - folder containing combined musical data resulting from many hours of scraping and cleaning from various data sources (see below)
+* img/ - folder containing project images
 
 ## Data Sources
 
