@@ -23,7 +23,8 @@ Emotify is a tool for listeners and content creators to filter any songs by emot
 
 ## Repo Contents
 
-* Emotify_Project_Dev.ipynb - the main Jupyter notebook for this project containing data collection, EDA, model development, and validation (with the sections ordered in time, showing project development)
+* Emotify_Project_Final.ipynb - the main Jupyter notebook for this project containing data collection, EDA, model development, and validation
+* Emotify_Project_Dev.ipynb - a more scattered Jupyter notebook for this project, showing the evolution of the project over time in more detail (including alternate strategies for classification)
 * build_final_model.py - a separate Python script run specifically to build final models within specific environments (with parameters tuned in the development notebook)
 * Data/ - folder containing combined musical data resulting from many hours of scraping and cleaning from various data sources (see below)
 * img/ - folder containing project images
